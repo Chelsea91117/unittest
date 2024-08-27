@@ -31,16 +31,18 @@ class TestTextProcessor(unittest.TestCase):
         processor.clean_text()
         self.assertEqual(processor.cleaned_text, " abc")
 
+        processor = TextProcessor("")
+        processor.clean_text()
+        self.assertEqual(processor.cleaned_text, "")
+
     def test_remove_stop_words(self):
-        # Проверить, что стоп-слова удаляются из текста.
+
         processor = TextProcessor("this is a test")
         processor.clean_text()
         processor.remove_stop_words(["this", "is"])
         self.assertEqual(processor.cleaned_text, "a test")
 
-        # Проверить, что текст корректно очищается, если clean_text не был вызван заранее.
-        processor = TextProcessor("hello world")
-        processor.clean_text()
+        processor = TextProcessor("Hello World")
         processor.remove_stop_words([])
         self.assertEqual(processor.cleaned_text, "hello world")
 
